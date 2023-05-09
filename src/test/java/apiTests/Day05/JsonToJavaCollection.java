@@ -32,7 +32,7 @@ public class JsonToJavaCollection {
 
         assertEquals(response.statusCode(),200);
         //we need to de-serialiaze Json response to java collection
-        List<Map<String,Object>> allUsersMap= response.body().as(List.class);
+        List<Map<String,Object>> allUsersMap= response.as(List.class);
         System.out.println("allUsersMap = " + allUsersMap);
 
         System.out.println("allUsersMap.get(1).get(\"name\") = " + allUsersMap.get(2).get("name"));
