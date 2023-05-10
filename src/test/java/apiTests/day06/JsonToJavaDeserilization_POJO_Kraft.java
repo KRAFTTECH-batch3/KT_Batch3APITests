@@ -32,6 +32,8 @@ public class JsonToJavaDeserilization_POJO_Kraft {
         //verify status code
         Assert.assertEquals(response.statusCode(),200);
 
+        //de-serilization
+        //Json to Custom Java Class(POJO)
         KraftUser1[] kraftUser1 = response.as(KraftUser1[].class);
 
         //get the length of array

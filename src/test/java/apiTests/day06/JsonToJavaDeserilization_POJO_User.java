@@ -6,8 +6,6 @@ import io.restassured.response.Response;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import java.util.Map;
-
 public class JsonToJavaDeserilization_POJO_User {
 
     //TASK
@@ -38,6 +36,8 @@ public class JsonToJavaDeserilization_POJO_User {
         Assert.assertEquals(response.statusCode(),200);
 
         //Map<String,Object> map = response.as(Map.class);
+        //de-serilization
+        //Json to known Java Collection (map, list)
         User user = response.as(User.class);
 
         //get id

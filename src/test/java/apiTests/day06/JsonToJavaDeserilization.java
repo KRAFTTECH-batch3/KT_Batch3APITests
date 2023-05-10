@@ -83,6 +83,7 @@ public class JsonToJavaDeserilization {
         Assert.assertEquals(actualStatusMap,expectedStatus);
     }
 
+    //Test with SOFT assertion (coming from TestNG)
     @Test
     public void test2(){
         Response response = RestAssured
@@ -110,6 +111,7 @@ public class JsonToJavaDeserilization {
         softAssert.assertEquals(actualGenderMap,expectedGender);
         softAssert.assertEquals(actualStatusMap,expectedStatus);
 
-        //softAssert.assertAll();
+        //this is the point all assertions become active
+        softAssert.assertAll();
     }
 }
