@@ -22,7 +22,7 @@ public class JsonToJavaDeserilization_POJO_User {
     "email": "amish_khan@greenholt.test",
     "gender": "male",
     "status": "inactive"
-}
+    }
      */
 
     @Test

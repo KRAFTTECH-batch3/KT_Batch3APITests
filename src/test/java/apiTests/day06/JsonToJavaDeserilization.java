@@ -28,6 +28,7 @@ public class JsonToJavaDeserilization {
      */
 
     //Test with HARD ASSERTION
+    //If any test case fail then execution will stop at that point
     @Test
     public void test1(){
         Response response = RestAssured
@@ -84,6 +85,7 @@ public class JsonToJavaDeserilization {
     }
 
     //Test with SOFT assertion (coming from TestNG)
+    //Soft assert allows us to assert all verifications from top to bottom and at the end it will show you which assertions pass and which ones fail
     @Test
     public void test2(){
         Response response = RestAssured
@@ -99,10 +101,11 @@ public class JsonToJavaDeserilization {
 
         double expectedId = 1366811.0;
         String expectedName = "Girja Khan";
-        String expectedEmail = "girja_khan@borer.testtttttttt";
+        String expectedEmail = "girja_khan@borer.test";
         String expectedGender = "female";
         String expectedStatus = "inactive";
 
+        //create a softAssert object
         SoftAssert softAssert = new SoftAssert();
 
         softAssert.assertEquals(actualIdMap,expectedId);
