@@ -6,7 +6,7 @@ import org.testng.annotations.Test;
 
 import java.util.Map;
 
-public class gsonPractice {
+public class GsonPractice {
 
     //de-serilization
     //convert data from json to java
