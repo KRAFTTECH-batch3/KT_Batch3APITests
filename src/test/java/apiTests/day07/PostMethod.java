@@ -1,6 +1,7 @@
 package apiTests.day07;
 
 import apiPOJOTemplates.PostKraftUser;
+import com.github.javafaker.Faker;
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
@@ -11,6 +12,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class PostMethod {
+
+    Faker faker = new Faker();
 
     //POST METHOD
     /*
@@ -44,15 +47,19 @@ public class PostMethod {
     ...
      */
 
-    //First way
-    //String
+    //FIRST WAY
+    //STRING
     @Test
     public void test1(){
 
+        String nameFaker = faker.name().fullName();
+        String emailFaker = faker.internet().emailAddress();
+        String password = faker.internet().password();
+
         String jsonBody = "{\n" +
-                "    \"name\": \"gokhan\",\n" +
-                "    \"email\": \"gokhan@gokhan.com\",\n" +
-                "    \"password\": \"Gokhan1234\"\n" +
+                "    \"name\": \"" + nameFaker + "\",\n" +
+                "    \"email\": \"" + emailFaker + "\",\n" +
+                "    \"password\": \"" + password + "\"\n" +
                 "    }";
 
         Response response = RestAssured
@@ -71,12 +78,12 @@ public class PostMethod {
 
         //verify name
         String actualName = response.path("name");
-        String expectedName = "gokhan";
+        String expectedName = nameFaker;
         Assert.assertEquals(actualName,expectedName);
 
         //verify email
         String actualEmail = response.path("email");
-        String expectedEmail = "gokhan@gokhan.com";
+        String expectedEmail = emailFaker;
         Assert.assertEquals(actualEmail,expectedEmail);
     }
 
@@ -100,17 +107,20 @@ public class PostMethod {
     email
     ...
      */
+
     //SECOND WAY
     //MAP
-
     @Test
     public void test2(){
 
-        Map<String,String> map = new HashMap<>();
-        map.put("name", "gokhan1");
-        map.put("email", "gokhan1@gokhan1.com");
-        map.put("password", "Gokhan1234");
+        String nameFaker = faker.name().fullName();
+        String emailFaker = faker.internet().emailAddress();
+        String password = faker.internet().password();
 
+        Map<String,String> map = new HashMap<>();
+        map.put("name", nameFaker);
+        map.put("email", emailFaker);
+        map.put("password", password);
 
         Response response = RestAssured
                 .given()
@@ -127,12 +137,12 @@ public class PostMethod {
 
         //verify name
         String actualName = response.path("name");
-        String expectedName = "gokhan1";
+        String expectedName = nameFaker;
         Assert.assertEquals(actualName,expectedName);
 
         //verify email
         String actualEmail = response.path("email");
-        String expectedEmail = "gokhan1@gokhan1.com";
+        String expectedEmail = emailFaker;
         Assert.assertEquals(actualEmail,expectedEmail);
     }
 
@@ -159,14 +169,19 @@ public class PostMethod {
 
     //THIRD WAY
     //JAVA CUSTOM CLASS
-
     @Test
     public void test3(){
 
+        String nameFaker = faker.name().fullName();
+        String emailFaker = faker.internet().emailAddress();
+        String password = faker.internet().password();
+
         PostKraftUser postKraftUser = new PostKraftUser();
-        postKraftUser.setName("gokhan2");
-        postKraftUser.setEmail("gokhan2@gokhan2.com");
-        postKraftUser.setPassword("Gokhan1234");
+        postKraftUser.setName(nameFaker);
+        postKraftUser.setEmail(emailFaker);
+        postKraftUser.setPassword(password);
+
+        System.out.println("postKraftUser = " + postKraftUser);
 
 
         Response response = RestAssured
@@ -185,12 +200,12 @@ public class PostMethod {
 
         //verify name
         String actualName = response.path("name");
-        String expectedName = "gokhan2";
+        String expectedName = nameFaker;
         Assert.assertEquals(actualName,expectedName);
 
         //verify email
         String actualEmail = response.path("email");
-        String expectedEmail = "gokhan2@gokhan2.com";
+        String expectedEmail = emailFaker;
         Assert.assertEquals(actualEmail,expectedEmail);
     }
 }
